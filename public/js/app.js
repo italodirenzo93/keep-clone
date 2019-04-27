@@ -6280,7 +6280,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    margin: 0;\n    padding: 0;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.app {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    grid-template-areas:\n        \"header header\"\n        \"sidebar content\";\n    grid-gap: 3px;\n}\n", ""]);
+exports.push([module.i, "\n.app {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    grid-template-areas:\n        \"header header\"\n        \"sidebar content\";\n    grid-gap: 3px;\n}\n", ""]);
 
 // exports
 
@@ -6299,7 +6299,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header {\n    grid-area: header;\n    background-color: white;\n    border-bottom: 1px solid #dadce0;\n    padding-top: 5px;\n    padding-bottom: 5px;\n    display: flex;\n    justify-content: space-between;\n    position: relative;\n    width: 100%;\n    box-sizing: border-box;\n}\n.sidebar-toggle {\n  border: none;\n  background: none;\n  padding: 8px 12px;\n  border-radius: 50%;\n  cursor: pointer;\n  font-size: 1.4em;\n  line-height: 24px;\n}\n.sidebar-toggle:hover,\n.sidebar-toggle:active,\n.sidebar-toggle:focus {\n  background-color: rgba(60,64,67,0.08);\n}\n.logo {\n  text-decoration: none;\n}\n.logo > img {\n  vertical-align: middle;\n  border: 0;\n  padding-right: 4px;\n  width: 40px;\n  height: 40px;\n}\n.logo-text {\n  font-size: 22px;\n  display: inline-block;\n  color: #5f6368;\n}\n", ""]);
+exports.push([module.i, "\n.header {\n    grid-area: header;\n    background-color: white;\n    border-bottom: 1px solid #dadce0;\n    padding-top: 5px;\n    padding-bottom: 5px;\n    display: flex;\n    justify-content: space-between;\n    position: relative;\n    width: 100%;\n    box-sizing: border-box;\n    padding: 8px;\n}\n.sidebar-toggle {\n  border: none;\n  background: none;\n  padding: 8px 12px;\n  border-radius: 50%;\n  cursor: pointer;\n  font-size: 1.4em;\n  line-height: 24px;\n}\n.sidebar-toggle:hover,\n.sidebar-toggle:active,\n.sidebar-toggle:focus {\n  background-color: rgba(60,64,67,0.08);\n}\n.logo {\n  text-decoration: none;\n}\n.logo > img {\n  vertical-align: middle;\n  border: 0;\n  padding-right: 4px;\n  width: 40px;\n  height: 40px;\n}\n.logo-text {\n  font-size: 22px;\n  display: inline-block;\n  color: #5f6368;\n}\n", ""]);
 
 // exports
 
@@ -6337,7 +6337,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sidebar {\n  grid-area: sidebar;\n  width: 280px;\n}\n.sidebar-list {\n  list-style: none;\n  margin-top: 0;\n  margin-bottom: 0;\n  padding: 8px 0;\n}\n.sidebar-list > li {\n  padding-left: 24px;\n  border-radius: 0 25px 25px 0;\n  color: #202124;\n  font-size: .875rem;\n  line-height: 1.25rem;\n  display: block;\n  min-height: 40px;\n  padding-bottom: 4px;\n  padding-top: 4px;\n}\n.sidebar-list:not(:last-child) {\n  border-bottom: 1px solid #dadce0;\n}\n.sidebar-list > li:hover {\n  background-color: #f1f3f4;\n}\n.sidebar-list > li.active {\n  background-color: #feefc3;\n}\n.sidebar-list > li > a {\n  text-decoration: none;\n  display: block;\n  width: 100%;\n  color: inherit;\n  line-height: 40px;\n}\n", ""]);
+exports.push([module.i, "\n.sidebar {\n  grid-area: sidebar;\n  width: 280px;\n}\n.sidebar-list {\n  list-style: none;\n  margin-top: 0;\n  margin-bottom: 0;\n  padding: 8px 0;\n}\n.sidebar-list > li {\n  padding-left: 24px;\n  border-radius: 0 25px 25px 0;\n  color: #202124;\n  font-size: .875rem;\n  font-weight: 500;\n  line-height: 1.25rem;\n  display: block;\n  min-height: 40px;\n  padding-bottom: 4px;\n  padding-top: 4px;\n}\n.sidebar-list:not(:last-child) {\n  border-bottom: 1px solid #dadce0;\n}\n.sidebar-list > li:hover {\n  background-color: #f1f3f4;\n}\n.sidebar-list > li.active {\n  background-color: #feefc3;\n}\n.sidebar-list > li > a {\n  text-decoration: none;\n  display: block;\n  width: 100%;\n  color: inherit;\n}\n.sidebar-list .sidebar-icon {\n  margin-top: 8px;\n  width: 18px;\n  height: 18px;\n}\n.sidebar-list .sidebar-link-text {\n  padding-left: 32px;\n  line-height: 40px;\n}\n", ""]);
 
 // exports
 
@@ -38060,15 +38060,17 @@ var staticRenderFns = [
       _c("ul", { staticClass: "sidebar-list" }, [
         _c("li", { staticClass: "active" }, [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "far fa-lightbulb" }),
-            _vm._v(" Notes")
+            _c("i", { staticClass: "far fa-lightbulb sidebar-icon" }),
+            _c("span", { staticClass: "sidebar-link-text" }, [_vm._v("Notes")])
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "far fa-bell" }),
-            _vm._v(" Reminders")
+            _c("i", { staticClass: "far fa-bell sidebar-icon" }),
+            _c("span", { staticClass: "sidebar-link-text" }, [
+              _vm._v("Reminders")
+            ])
           ])
         ])
       ]),
@@ -38076,15 +38078,17 @@ var staticRenderFns = [
       _c("ul", { staticClass: "sidebar-list" }, [
         _c("li", [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fas fa-archive" }),
-            _vm._v(" Archive")
+            _c("i", { staticClass: "fas fa-archive sidebar-icon" }),
+            _c("span", { staticClass: "sidebar-link-text" }, [
+              _vm._v("Archive")
+            ])
           ])
         ]),
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "far fa-trash-alt" }),
-            _vm._v(" Trash")
+            _c("i", { staticClass: "far fa-trash-alt sidebar-icon" }),
+            _c("span", { staticClass: "sidebar-link-text" }, [_vm._v("Trash")])
           ])
         ])
       ])

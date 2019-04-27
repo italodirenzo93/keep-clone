@@ -1,12 +1,16 @@
 <template>
     <aside class="sidebar">
         <ul class="sidebar-list">
-            <li class="active"><a href="#"><i class="far fa-lightbulb"></i> Notes</a></li>
-            <li><a href="#"><i class="far fa-bell"></i> Reminders</a></li>
+            <li class="active">
+              <a href="#"><i class="far fa-lightbulb sidebar-icon"></i><span class="sidebar-link-text">Notes</span></a>
+            </li>
+            <li>
+              <a href="#"><i class="far fa-bell sidebar-icon"></i><span class="sidebar-link-text">Reminders</span></a>
+            </li>
         </ul>
         <ul class="sidebar-list">
-            <li><a href="#"><i class="fas fa-archive"></i> Archive</a></li>
-            <li><a href="#"><i class="far fa-trash-alt"></i> Trash</a></li>
+            <li><a href="#"><i class="fas fa-archive sidebar-icon"></i><span class="sidebar-link-text">Archive</span></a></li>
+            <li><a href="#"><i class="far fa-trash-alt sidebar-icon"></i><span class="sidebar-link-text">Trash</span></a></li>
         </ul>
     </aside>
 </template>
@@ -27,6 +31,7 @@
   border-radius: 0 25px 25px 0;
   color: #202124;
   font-size: .875rem;
+  font-weight: 500;
   line-height: 1.25rem;
   display: block;
   min-height: 40px;
@@ -47,6 +52,14 @@
   display: block;
   width: 100%;
   color: inherit;
+}
+.sidebar-list .sidebar-icon {
+  margin-top: 8px;
+  width: 18px;
+  height: 18px;
+}
+.sidebar-list .sidebar-link-text {
+  padding-left: 32px;
   line-height: 40px;
 }
 </style>

@@ -24,6 +24,7 @@
     position: relative;
     width: 100%;
     box-sizing: border-box;
+    padding: 8px;
 }
 
 .sidebar-toggle {
