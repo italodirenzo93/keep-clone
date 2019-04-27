@@ -54,12 +54,13 @@
   color: inherit;
 }
 .sidebar-list .sidebar-icon {
-  margin-top: 8px;
   width: 18px;
   height: 18px;
+  vertical-align: middle;
 }
 .sidebar-list .sidebar-link-text {
   padding-left: 32px;
   line-height: 40px;
+  vertical-align: middle;
 }
 </style>

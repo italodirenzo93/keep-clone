@@ -1,8 +1,12 @@
 body {
-  font-family: "Roboto", arial, sans-serif;
+  font-family: "Google Sans", "Roboto", arial, sans-serif;
   font-size: 15px;
   color: #202124;
   margin: 0;
   padding: 0;
+}
+
+.text-center {
+  text-align: center !important;
 }
 
