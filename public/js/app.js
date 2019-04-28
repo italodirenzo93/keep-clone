@@ -1805,10 +1805,21 @@ __webpack_require__.r(__webpack_exports__);
     addNote: function addNote() {
       var _this2 = this;
 
-      window.axios.get('/api/notes/create').then(function (_ref2) {
+      window.axios.post('/api/notes').then(function (_ref2) {
         var data = _ref2.data;
 
         _this2.notes.push(data);
+      });
+    },
+    deleteNote: function deleteNote(id) {
+      var _this3 = this;
+
+      window.axios["delete"]("/api/notes/".concat(id)).then(function () {
+        var index = _this3.notes.findIndex(function (n) {
+          return n.id == id;
+        });
+
+        _this3.notes.splice(index, 1);
       });
     }
   }
@@ -1832,8 +1843,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    id: Number,
     title: String,
     body: String
   }
@@ -1851,6 +1864,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Note_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Note.vue */ "./resources/js/components/Note.vue");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6364,7 +6384,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.note {\n    display: inline-block;\n    border: 1px solid #dadce0;\n    border-radius: 8px;\n    padding: 12px;\n    cursor: pointer;\n    width: 240px;\n    background-color: white;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    margin: 8px;\n}\n.note:hover {\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.note > .title {\n    margin: 0;\n    font-weight: 500;\n    font-size: 16px;\n}\n.note > .body {\n    font-size: 0.9em;\n    word-wrap: break-word;\n}\n", ""]);
+exports.push([module.i, "\n.note {\n    display: inline-block;\n    border: 1px solid #dadce0;\n    border-radius: 8px;\n    padding: 12px;\n    cursor: pointer;\n    width: 240px;\n    background-color: white;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    margin: 8px;\n    position: relative;\n}\n.note:hover {\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.note > .title {\n    margin: 0;\n    font-weight: 500;\n    font-size: 16px;\n}\n.note > .body {\n    font-size: 0.9em;\n    word-wrap: break-word;\n}\n.delete-note {\n    border: none;\n    background-color: black;\n    border-radius: 100px;\n    cursor: pointer;\n    color: white;\n    width: 24px;\n    height: 24px;\n    position: absolute;\n    top: -12px;\n    left: -12px;\n    text-align: center;\n    display: none;\n}\n.note:hover > .delete-note {\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -38026,7 +38046,10 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("note-list", { attrs: { notes: _vm.notes } })
+          _c("note-list", {
+            attrs: { notes: _vm.notes },
+            on: { deleted: _vm.deleteNote }
+          })
         ],
         1
       )
@@ -38129,6 +38152,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "note" }, [
+    _c(
+      "button",
+      {
+        staticClass: "delete-note",
+        on: {
+          click: function($event) {
+            return _vm.$emit("deleted")
+          }
+        }
+      },
+      [_c("i", { staticClass: "fas fa-times" })]
+    ),
+    _vm._v(" "),
     _c("h2", { staticClass: "title" }, [_vm._v(_vm._s(_vm.title))]),
     _vm._v(" "),
     _c("p", { staticClass: "body" }, [_vm._v(_vm._s(_vm.body))])
@@ -38162,7 +38198,12 @@ var render = function() {
     _vm._l(_vm.notes, function(note) {
       return _c("note", {
         key: note.id,
-        attrs: { title: note.title, body: note.body }
+        attrs: { id: note.id, title: note.title, body: note.body },
+        on: {
+          deleted: function($event) {
+            return _vm.$emit("deleted", note.id)
+          }
+        }
       })
     }),
     1

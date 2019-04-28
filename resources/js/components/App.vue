@@ -6,7 +6,7 @@
             <div class="add-container">
                 <button class="add-note" @click="addNote()"><i class="fas fa-plus"></i> Add Note</button>
             </div>
-            <note-list :notes="notes"></note-list>
+            <note-list :notes="notes" @deleted="deleteNote"></note-list>
         </main>
     </div>
 </template>
@@ -34,8 +34,14 @@ export default {
     },
     methods: {
         addNote() {
-            window.axios.get('/api/notes/create').then(({data}) => {
+            window.axios.post('/api/notes').then(({data}) => {
                 this.notes.push(data);
+            });
+        },
+        deleteNote(id) {
+            window.axios.delete(`/api/notes/${id}`).then(() => {
+                let index = this.notes.findIndex(n => n.id == id);
+                this.notes.splice(index, 1);
             });
         }
     }

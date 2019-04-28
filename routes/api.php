@@ -17,6 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/notes', 'NotesController', [
-    'except' => ['edit', 'show', 'store']
-]);
+// Route::resource('/notes', 'NotesController', [
+//     'except' => ['edit', 'show', 'store']
+// ]);
+
+Route::get('/notes', 'NotesController@index');
+
+Route::post('/notes', 'NotesController@create');
+
+Route::put('/notes/{id}', 'NotesController@update');
+
+Route::delete('/notes/{id}', 'NotesController@delete');
