@@ -1,6 +1,6 @@
 <template>
-    <div class="note">
-    	<button class="delete-note" @click="$emit('deleted')"><i class="fas fa-times"></i></button>
+    <div class="note" @click="$emit('selected', id)">
+    	<button class="delete-note" @click.stop="$emit('deleted')"><i class="fas fa-times"></i></button>
         <h2 class="title">{{title}}</h2>
         <p class="body">{{body}}</p>
     </div>

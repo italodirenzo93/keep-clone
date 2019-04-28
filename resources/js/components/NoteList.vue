@@ -6,6 +6,7 @@
             :id="note.id"
             :title="note.title"
             :body="note.body"
+            @selected="$emit('selected', note.id)"
             @deleted="$emit('deleted', note.id)"
         ></note>
     </div>

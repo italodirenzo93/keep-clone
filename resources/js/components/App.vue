@@ -6,8 +6,9 @@
             <div class="add-container">
                 <button class="add-note" @click="addNote()"><i class="fas fa-plus"></i> Add Note</button>
             </div>
-            <note-list :notes="notes" @deleted="deleteNote"></note-list>
+            <note-list :notes="notes" @selected="showEditor" @deleted="deleteNote"></note-list>
         </main>
+        <note-editor :open="selectedNote !== null" :note="selectedNote" @close="selectedNote = null"></note-editor>
     </div>
 </template>
 
@@ -15,17 +16,20 @@
 import HeaderComponent from './HeaderComponent.vue';
 import SidebarComponent from './SidebarComponent.vue';
 import NoteList from './NoteList.vue';
+import NoteEditor from './NoteEditor.vue';
 
 export default {
     data() {
         return {
-            notes: []
+            notes: [],
+            selectedNote: null
         };
     },
     components: {
         HeaderComponent,
         SidebarComponent,
-        NoteList
+        NoteList,
+        NoteEditor
     },
     created() {
         window.axios.get('/api/notes').then(({data}) => {
@@ -43,6 +47,9 @@ export default {
                 let index = this.notes.findIndex(n => n.id == id);
                 this.notes.splice(index, 1);
             });
+        },
+        showEditor(id) {
+            this.selectedNote = this.notes.find(note => note.id == id);
         }
     }
 }
