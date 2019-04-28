@@ -19,6 +19,15 @@ class NotesController extends Controller
         return response($note->jsonSerialize(), Response::HTTP_CREATED);
     }
 
+    // public function create(Request $request)
+    // {
+    //     $note = new Note();
+    //     $note->title = $request->title;
+    //     $note->body = $request->body;
+    //     $note->save();
+    //     return response($note->jsonSerialize(), Response::HTTP_CREATED);
+    // }
+
     public function index()
     {
         return response(Note::all()->jsonSerialize(), Response::HTTP_OK);
@@ -26,7 +35,11 @@ class NotesController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        $note = Note::findOrFail($id);
+        $note->title = $request->title;
+        $note->body = $request->body;
+        $note->save();
+        return response($note->jsonSerialize(), Response::HTTP_OK);
     }
 
     public function delete($id)

@@ -35,6 +35,8 @@
   cursor: pointer;
   font-size: 1.4em;
   line-height: 24px;
+  vertical-align: middle;
+  color: #5f6368;
 }
 .sidebar-toggle:hover,
 .sidebar-toggle:active,
@@ -58,5 +60,6 @@
   font-size: 22px;
   display: inline-block;
   color: #5f6368;
+  vertical-align: middle;
 }
 </style>
