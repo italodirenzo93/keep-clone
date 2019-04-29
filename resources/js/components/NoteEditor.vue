@@ -29,10 +29,24 @@ export default {
             data.noteTitle = this.note.title;
             data.noteBody = this.note.body
         } else {
+            data.noteId = null;
             data.noteTitle = '';
             data.noteBody = '';
         }
         return data;
+    },
+    watch: {
+        open(value) {
+            if (value === true && this.note) {
+                this.noteId = this.note.id ? this.note.id : null;
+                this.noteTitle = this.note.title;
+                this.noteBody = this.note.body;
+            } else {
+                this.noteId = null;
+                this.noteTitle = '';
+                this.noteBody = '';
+            }
+        }
     },
     methods: {
         saveNote() {
