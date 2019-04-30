@@ -8,7 +8,7 @@
             </div>
             <note-list :notes="notes" @selected="showEditor" @deleted="deleteNote"></note-list>
         </main>
-        <note-editor :open="selectedNote !== null" :note="selectedNote" @close="selectedNote = null"></note-editor>
+        <note-editor :open="selectedNote !== null" :note="selectedNote" @save="saveNote" @close="selectedNote = null"></note-editor>
     </div>
 </template>
 
@@ -46,6 +46,14 @@ export default {
             window.axios.delete(`/api/notes/${id}`).then(() => {
                 let index = this.notes.findIndex(n => n.id == id);
                 this.notes.splice(index, 1);
+            });
+        },
+        saveNote(note) {
+            window.axios.put(`/api/notes/${note.id}`, note).then(() => {
+                let n = this.notes.find(x => x.id == note.id);
+                n.title = note.title;
+                n.body = note.body;
+                this.selectedNote = null;
             });
         },
         showEditor(id) {

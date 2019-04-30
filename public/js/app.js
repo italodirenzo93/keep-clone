@@ -1827,6 +1827,19 @@ __webpack_require__.r(__webpack_exports__);
         _this3.notes.splice(index, 1);
       });
     },
+    saveNote: function saveNote(note) {
+      var _this4 = this;
+
+      window.axios.put("/api/notes/".concat(note.id), note).then(function () {
+        var n = _this4.notes.find(function (x) {
+          return x.id == note.id;
+        });
+
+        n.title = note.title;
+        n.body = note.body;
+        _this4.selectedNote = null;
+      });
+    },
     showEditor: function showEditor(id) {
       this.selectedNote = this.notes.find(function (note) {
         return note.id == id;
@@ -38192,6 +38205,7 @@ var render = function() {
       _c("note-editor", {
         attrs: { open: _vm.selectedNote !== null, note: _vm.selectedNote },
         on: {
+          save: _vm.saveNote,
           close: function($event) {
             _vm.selectedNote = null
           }
