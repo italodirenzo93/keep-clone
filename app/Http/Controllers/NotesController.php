@@ -10,15 +10,6 @@ use App\Note;
 
 class NotesController extends Controller
 {
-    // public function create(Generator $faker)
-    // {
-    //     $note = new Note();
-    //     $note->title = $faker->sentence;
-    //     $note->body = $faker->paragraph;
-    //     $note->save();
-    //     return response($note->jsonSerialize(), Response::HTTP_CREATED);
-    // }
-
     public function create(Request $request)
     {
         $note = new Note();
