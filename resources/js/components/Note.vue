@@ -52,7 +52,7 @@ export default {
     height: 24px;
     position: absolute;
     top: -12px;
-    left: -12px;
+    right: -12px;
     text-align: center;
     display: none;
 }

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         <!-- Favicon -->
-        <link href="" rel="shortcut icon" />
+        <link href="https://ssl.gstatic.com/keep/keep.ico" rel="shortcut icon" />
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700" rel="stylesheet" />
