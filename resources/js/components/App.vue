@@ -38,9 +38,7 @@ export default {
     },
     methods: {
         addNote() {
-            window.axios.post('/api/notes').then(({data}) => {
-                this.notes.push(data);
-            });
+            this.selectedNote = { id: null, title: '', body: '' };
         },
         deleteNote(id) {
             window.axios.delete(`/api/notes/${id}`).then(() => {
@@ -49,12 +47,19 @@ export default {
             });
         },
         saveNote(note) {
-            window.axios.put(`/api/notes/${note.id}`, note).then(() => {
-                let n = this.notes.find(x => x.id == note.id);
-                n.title = note.title;
-                n.body = note.body;
-                this.selectedNote = null;
-            });
+            if (!note.id) {
+                window.axios.post('/api/notes', note).then(({data}) => {
+                    this.notes.push(data);
+                    this.selectedNote = null;
+                });
+            } else {
+                window.axios.put(`/api/notes/${note.id}`, note).then(() => {
+                    let n = this.notes.find(x => x.id == note.id);
+                    n.title = note.title;
+                    n.body = note.body;
+                    this.selectedNote = null;
+                });
+            }
         },
         showEditor(id) {
             this.selectedNote = this.notes.find(note => note.id == id);

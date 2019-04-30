@@ -1808,37 +1808,45 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addNote: function addNote() {
-      var _this2 = this;
-
-      window.axios.post('/api/notes').then(function (_ref2) {
-        var data = _ref2.data;
-
-        _this2.notes.push(data);
-      });
+      this.selectedNote = {
+        id: null,
+        title: '',
+        body: ''
+      };
     },
     deleteNote: function deleteNote(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       window.axios["delete"]("/api/notes/".concat(id)).then(function () {
-        var index = _this3.notes.findIndex(function (n) {
+        var index = _this2.notes.findIndex(function (n) {
           return n.id == id;
         });
 
-        _this3.notes.splice(index, 1);
+        _this2.notes.splice(index, 1);
       });
     },
     saveNote: function saveNote(note) {
-      var _this4 = this;
+      var _this3 = this;
 
-      window.axios.put("/api/notes/".concat(note.id), note).then(function () {
-        var n = _this4.notes.find(function (x) {
-          return x.id == note.id;
+      if (!note.id) {
+        window.axios.post('/api/notes', note).then(function (_ref2) {
+          var data = _ref2.data;
+
+          _this3.notes.push(data);
+
+          _this3.selectedNote = null;
         });
+      } else {
+        window.axios.put("/api/notes/".concat(note.id), note).then(function () {
+          var n = _this3.notes.find(function (x) {
+            return x.id == note.id;
+          });
 
-        n.title = note.title;
-        n.body = note.body;
-        _this4.selectedNote = null;
-      });
+          n.title = note.title;
+          n.body = note.body;
+          _this3.selectedNote = null;
+        });
+      }
     },
     showEditor: function showEditor(id) {
       this.selectedNote = this.notes.find(function (note) {
@@ -6521,7 +6529,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.note-list {\n    display: flex;\n    justify-content: center;\n}\n", ""]);
+exports.push([module.i, "\n.note-list {\n    display: flex;\n    justify-content: flex-start;\n    flex-flow: row wrap;\n}\n", ""]);
 
 // exports
 

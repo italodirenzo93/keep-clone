@@ -28,6 +28,7 @@ export default {
 <style>
 .note-list {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-flow: row wrap;
 }
 </style>
