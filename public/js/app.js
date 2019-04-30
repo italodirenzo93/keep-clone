@@ -1938,7 +1938,8 @@ __webpack_require__.r(__webpack_exports__);
         this.noteId = this.note.id ? this.note.id : null;
         this.noteTitle = this.note.title;
         this.noteBody = this.note.body;
-        this.$refs.titleEditor.dispatchEvent(new Event('focus'));
+        var title = this.$refs.titleEditor;
+        title.focus();
       } else {
         this.noteId = null;
         this.noteTitle = '';
@@ -6453,7 +6454,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.app {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    grid-template-areas:\n        \"header header\"\n        \"sidebar content\";\n    grid-gap: 3px;\n}\n.content {\n    grid-area: content;\n}\n.add-container {\n    text-align: center;\n    margin: 8px 0;\n}\n.add-button {\n    outline: none;\n    border: 1px solid #dadce0;\n}\n", ""]);
+exports.push([module.i, "\n.app {\r\n    display: grid;\r\n    grid-template-columns: auto 1fr;\r\n    grid-template-areas:\r\n        \"header header\"\r\n        \"sidebar content\";\r\n    grid-gap: 3px;\n}\n.content {\r\n    grid-area: content;\n}\n.add-container {\r\n    text-align: center;\r\n    margin: 8px 0;\n}\n.add-button {\r\n    outline: none;\r\n    border: 1px solid #dadce0;\n}\r\n", ""]);
 
 // exports
 
@@ -6472,7 +6473,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header {\n    grid-area: header;\n    background-color: white;\n    border-bottom: 1px solid #dadce0;\n    padding-top: 5px;\n    padding-bottom: 5px;\n    display: flex;\n    justify-content: space-between;\n    position: relative;\n    width: 100%;\n    box-sizing: border-box;\n    padding: 8px;\n}\n.sidebar-toggle {\n  border: none;\n  background: none;\n  padding: 8px 12px;\n  border-radius: 50%;\n  cursor: pointer;\n  font-size: 1.4em;\n  line-height: 24px;\n  vertical-align: middle;\n  color: #5f6368;\n}\n.sidebar-toggle:hover,\n.sidebar-toggle:active,\n.sidebar-toggle:focus {\n  background-color: rgba(60,64,67,0.08);\n}\n.logo {\n  text-decoration: none;\n}\n.logo > img {\n  vertical-align: middle;\n  border: 0;\n  padding-right: 4px;\n  width: 40px;\n  height: 40px;\n}\n.logo-text {\n  font-size: 22px;\n  display: inline-block;\n  color: #5f6368;\n  vertical-align: middle;\n}\n", ""]);
+exports.push([module.i, "\n.header {\r\n    grid-area: header;\r\n    background-color: white;\r\n    border-bottom: 1px solid #dadce0;\r\n    padding-top: 5px;\r\n    padding-bottom: 5px;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    position: relative;\r\n    width: 100%;\r\n    box-sizing: border-box;\r\n    padding: 8px;\n}\n.sidebar-toggle {\r\n  border: none;\r\n  background: none;\r\n  padding: 8px 12px;\r\n  border-radius: 50%;\r\n  cursor: pointer;\r\n  font-size: 1.4em;\r\n  line-height: 24px;\r\n  vertical-align: middle;\r\n  color: #5f6368;\n}\n.sidebar-toggle:hover,\r\n.sidebar-toggle:active,\r\n.sidebar-toggle:focus {\r\n  background-color: rgba(60,64,67,0.08);\n}\n.logo {\r\n  text-decoration: none;\n}\n.logo > img {\r\n  vertical-align: middle;\r\n  border: 0;\r\n  padding-right: 4px;\r\n  width: 40px;\r\n  height: 40px;\n}\n.logo-text {\r\n  font-size: 22px;\r\n  display: inline-block;\r\n  color: #5f6368;\r\n  vertical-align: middle;\n}\r\n", ""]);
 
 // exports
 
@@ -6491,7 +6492,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.note {\n    display: inline-block;\n    border: 1px solid #dadce0;\n    border-radius: 8px;\n    padding: 12px;\n    cursor: pointer;\n    width: 240px;\n    background-color: white;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    margin: 8px;\n    position: relative;\n}\n.note:hover {\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.note > .title {\n    margin: 0;\n    font-weight: 500;\n    font-size: 16px;\n}\n.note > .body {\n    font-size: 0.9em;\n    word-wrap: break-word;\n}\n.delete-note {\n    border: none;\n    background-color: black;\n    border-radius: 100px;\n    cursor: pointer;\n    color: white;\n    width: 24px;\n    height: 24px;\n    position: absolute;\n    top: -12px;\n    right: -12px;\n    text-align: center;\n    display: none;\n}\n.note:hover > .delete-note {\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.note {\r\n    display: inline-block;\r\n    border: 1px solid #dadce0;\r\n    border-radius: 8px;\r\n    padding: 12px;\r\n    cursor: pointer;\r\n    width: 240px;\r\n    background-color: white;\r\n    -moz-user-select: none;\r\n    -webkit-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\r\n    margin: 8px;\r\n    position: relative;\n}\n.note:hover {\r\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.note > .title {\r\n    margin: 0;\r\n    font-weight: 500;\r\n    font-size: 16px;\n}\n.note > .body {\r\n    font-size: 0.9em;\r\n    word-wrap: break-word;\n}\n.delete-note {\r\n    border: none;\r\n    background-color: black;\r\n    border-radius: 100px;\r\n    cursor: pointer;\r\n    color: white;\r\n    width: 24px;\r\n    height: 24px;\r\n    position: absolute;\r\n    top: -12px;\r\n    right: -12px;\r\n    text-align: center;\r\n    display: none;\n}\n.note:hover > .delete-note {\r\n    display: inline-block;\n}\r\n", ""]);
 
 // exports
 
@@ -6510,7 +6511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.note-editor {\n    display: none;\n    position: fixed;\n    z-index: 3;\n    padding: 12px;\n    width: 410px;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: white;\n    border: 1px solid lightgrey;\n    border-radius: 5px;\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.note-editor.open {\n    display: block;\n}\n.note-editor input,\n.note-editor textarea {\n    background: none;\n    border: none;\n    display: block;\n    width: 100%;\n}\n.note-editor-button {\n    background: none;\n    border: none;\n    font-size: 18px;\n    border-radius: 100px;\n    padding: 4px 11px;\n    cursor: pointer;\n}\n.note-editor-button:hover,\n.note-editor-button:focus,\n.note-editor-button:active {\n    background-color: rgba(60,64,67,0.1);\n}\n.note-title-editor,\n.note-body-editor,\n.note-editor-buttons {\n    margin: 7px 0;\n}\n.note-title-editor input {\n    font-size: 22px;\n    font-weight: 600;\n}\n.note-body-editor textarea {\n    height: 240px;\n    font-family: Roboto,Arial,sans-serif;\n    font-size: 15px;\n    font-weight: 400;\n    resize: none;\n    overflow-y: auto;\n}\n.note-editor-buttons {\n    text-align: right;\n    margin-bottom: 0;\n}\n", ""]);
+exports.push([module.i, "\n.note-editor {\r\n    display: none;\r\n    position: fixed;\r\n    z-index: 3;\r\n    padding: 12px;\r\n    width: 410px;\r\n    top: 50%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%, -50%);\r\n            transform: translate(-50%, -50%);\r\n    background-color: white;\r\n    border: 1px solid lightgrey;\r\n    border-radius: 5px;\r\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.note-editor.open {\r\n    display: block;\n}\n.note-editor input,\r\n.note-editor textarea {\r\n    background: none;\r\n    border: none;\r\n    display: block;\r\n    width: 100%;\n}\n.note-editor-button {\r\n    background: none;\r\n    border: none;\r\n    font-size: 18px;\r\n    border-radius: 100px;\r\n    padding: 4px 11px;\r\n    cursor: pointer;\n}\n.note-editor-button:hover,\r\n.note-editor-button:focus,\r\n.note-editor-button:active {\r\n    background-color: rgba(60,64,67,0.1);\n}\n.note-title-editor,\r\n.note-body-editor,\r\n.note-editor-buttons {\r\n    margin: 7px 0;\n}\n.note-title-editor input {\r\n    font-size: 22px;\r\n    font-weight: 600;\r\n    margin-bottom: 16px;\n}\n.note-body-editor textarea {\r\n    height: 240px;\r\n    font-family: Roboto,Arial,sans-serif;\r\n    font-size: 15px;\r\n    font-weight: 400;\r\n    resize: none;\r\n    overflow-y: auto;\n}\n.note-editor-buttons {\r\n    text-align: right;\r\n    margin-bottom: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -6529,7 +6530,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.note-list {\n    display: flex;\n    justify-content: flex-start;\n    flex-flow: row wrap;\n}\n", ""]);
+exports.push([module.i, "\n.note-list {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    flex-flow: row wrap;\n}\r\n", ""]);
 
 // exports
 
@@ -6548,7 +6549,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sidebar {\n  grid-area: sidebar;\n  width: 280px;\n}\n.sidebar-list {\n  list-style: none;\n  margin-top: 0;\n  margin-bottom: 0;\n  padding: 8px 0;\n}\n.sidebar-list > li {\n  padding-left: 24px;\n  border-radius: 0 25px 25px 0;\n  color: #202124;\n  font-size: .875rem;\n  font-weight: 500;\n  line-height: 1.25rem;\n  display: block;\n  min-height: 40px;\n  padding-bottom: 4px;\n  padding-top: 4px;\n}\n.sidebar-list:not(:last-child) {\n  border-bottom: 1px solid #dadce0;\n}\n.sidebar-list > li:hover {\n  background-color: #f1f3f4;\n}\n.sidebar-list > li.active {\n  background-color: #feefc3;\n}\n.sidebar-list > li > a {\n  text-decoration: none;\n  display: block;\n  width: 100%;\n  color: inherit;\n}\n.sidebar-list .sidebar-icon {\n  width: 18px;\n  height: 18px;\n  vertical-align: middle;\n}\n.sidebar-list .sidebar-link-text {\n  padding-left: 32px;\n  line-height: 40px;\n  vertical-align: middle;\n}\n", ""]);
+exports.push([module.i, "\n.sidebar {\r\n  grid-area: sidebar;\r\n  width: 280px;\n}\n.sidebar-list {\r\n  list-style: none;\r\n  margin-top: 0;\r\n  margin-bottom: 0;\r\n  padding: 8px 0;\n}\n.sidebar-list > li {\r\n  padding-left: 24px;\r\n  border-radius: 0 25px 25px 0;\r\n  color: #202124;\r\n  font-size: .875rem;\r\n  font-weight: 500;\r\n  line-height: 1.25rem;\r\n  display: block;\r\n  min-height: 40px;\r\n  padding-bottom: 4px;\r\n  padding-top: 4px;\n}\n.sidebar-list:not(:last-child) {\r\n  border-bottom: 1px solid #dadce0;\n}\n.sidebar-list > li:hover {\r\n  background-color: #f1f3f4;\n}\n.sidebar-list > li.active {\r\n  background-color: #feefc3;\n}\n.sidebar-list > li > a {\r\n  text-decoration: none;\r\n  display: block;\r\n  width: 100%;\r\n  color: inherit;\n}\n.sidebar-list .sidebar-icon {\r\n  width: 18px;\r\n  height: 18px;\r\n  vertical-align: middle;\n}\n.sidebar-list .sidebar-link-text {\r\n  padding-left: 32px;\r\n  line-height: 40px;\r\n  vertical-align: middle;\n}\r\n", ""]);
 
 // exports
 
@@ -51315,8 +51316,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/italo/Code/keep-clone/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/italo/Code/keep-clone/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\code\keep-clone\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\code\keep-clone\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

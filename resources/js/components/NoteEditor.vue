@@ -42,7 +42,8 @@ export default {
                 this.noteTitle = this.note.title;
                 this.noteBody = this.note.body;
 
-                this.$refs.titleEditor.dispatchEvent(new Event('focus'));
+                let title = this.$refs.titleEditor;
+                title.focus();
             } else {
                 this.noteId = null;
                 this.noteTitle = '';
@@ -112,6 +113,7 @@ export default {
 .note-title-editor input {
     font-size: 22px;
     font-weight: 600;
+    margin-bottom: 16px;
 }
 
 .note-body-editor textarea {
