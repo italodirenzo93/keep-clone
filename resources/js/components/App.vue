@@ -84,8 +84,16 @@ export default {
     text-align: center;
     margin: 8px 0;
 }
-.add-button {
-    outline: none;
-    border: 1px solid #dadce0;
+.add-note {
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  padding: 10px 14px;
+  border-radius: 20px;
+  font-size: 1.13em;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);
+}
+.add-note:hover {
+  background-color: rgba(0.5, 0.5, 0.5, 0.075);
 }
 </style>

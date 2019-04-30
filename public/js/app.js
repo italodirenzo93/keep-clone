@@ -6454,7 +6454,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.app {\r\n    display: grid;\r\n    grid-template-columns: auto 1fr;\r\n    grid-template-areas:\r\n        \"header header\"\r\n        \"sidebar content\";\r\n    grid-gap: 3px;\n}\n.content {\r\n    grid-area: content;\n}\n.add-container {\r\n    text-align: center;\r\n    margin: 8px 0;\n}\n.add-button {\r\n    outline: none;\r\n    border: 1px solid #dadce0;\n}\r\n", ""]);
+exports.push([module.i, "\n.app {\r\n    display: grid;\r\n    grid-template-columns: auto 1fr;\r\n    grid-template-areas:\r\n        \"header header\"\r\n        \"sidebar content\";\r\n    grid-gap: 3px;\n}\n.content {\r\n    grid-area: content;\n}\n.add-container {\r\n    text-align: center;\r\n    margin: 8px 0;\n}\n.add-note {\r\n  background-color: white;\r\n  cursor: pointer;\r\n  border: 1px solid lightgray;\r\n  padding: 10px 14px;\r\n  border-radius: 20px;\r\n  font-size: 1.13em;\r\n  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 1px 3px 1px rgba(60,64,67,0.149);\n}\n.add-note:hover {\r\n  background-color: rgba(0.5, 0.5, 0.5, 0.075);\n}\r\n", ""]);
 
 // exports
 
