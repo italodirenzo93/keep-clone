@@ -4,24 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Faker\Generator;
-
 use App\Note;
 
 class NotesController extends Controller
 {
-    public function create(Request $request)
+    public function index()
+    {
+        return response(Note::all()->jsonSerialize(), Response::HTTP_OK);
+    }
+
+    public function store(Request $request)
     {
         $note = new Note();
         $note->title = $request->title;
         $note->body = $request->body;
         $note->save();
         return response($note->jsonSerialize(), Response::HTTP_CREATED);
-    }
-
-    public function index()
-    {
-        return response(Note::all()->jsonSerialize(), Response::HTTP_OK);
     }
 
     public function update(Request $request, $id)
@@ -33,7 +31,7 @@ class NotesController extends Controller
         return response($note->jsonSerialize(), Response::HTTP_OK);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         Note::destroy($id);
         return response(null, Response::HTTP_OK);
