@@ -18,6 +18,7 @@ class CreateNotesTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('body');
+            $table->softDeletes();
         });
     }
 
