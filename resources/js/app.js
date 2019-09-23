@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 import App from './components/App.vue';
+import {store} from './store';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,6 +31,7 @@ import App from './components/App.vue';
 
 const app = new Vue({
     el: '#app',
+    store,
     components: {
         App
     },
