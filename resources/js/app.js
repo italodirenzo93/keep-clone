@@ -1,3 +1,4 @@
+import Vue from "vue/types/vue";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -20,8 +21,11 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-import App from './components/App.vue';
+import Vuex from "vuex";
+Vue.use(Vuex);
+
 import {store} from './store';
+import App from './components/App.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

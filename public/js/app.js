@@ -1920,38 +1920,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch(_store__WEBPACK_IMPORTED_MODULE_0__["ACTION_SELECT_NOTE"], note);
     },
     deleteNote: function deleteNote(id) {
-      var _this = this;
-
-      window.axios["delete"]("/api/notes/".concat(id)).then(function () {
-        var index = _this.notes.findIndex(function (n) {
-          return n.id == id;
-        });
-
-        _this.notes.splice(index, 1);
-      });
+      this.$store.dispatch(_store__WEBPACK_IMPORTED_MODULE_0__["ACTION_DELETE_NOTE"], id);
     },
     saveNote: function saveNote(note) {
-      var _this2 = this;
-
-      if (!note.id) {
-        window.axios.post('/api/notes', note).then(function (_ref) {
-          var data = _ref.data;
-
-          _this2.notes.push(data);
-
-          _this2.selectedNote = null;
-        });
-      } else {
-        window.axios.put("/api/notes/".concat(note.id), note).then(function () {
-          var n = _this2.notes.find(function (x) {
-            return x.id == note.id;
-          });
-
-          n.title = note.title;
-          n.body = note.body;
-          _this2.selectedNote = null;
-        });
-      }
+      var action = note.id ? _store__WEBPACK_IMPORTED_MODULE_0__["ACTION_UPDATE_NOTE"] : _store__WEBPACK_IMPORTED_MODULE_0__["ACTION_ADD_NOTE"];
+      this.$store.dispatch(action, note);
+      this.$store.dispatch(_store__WEBPACK_IMPORTED_MODULE_0__["ACTION_DESELECT_NOTE"]);
     },
     showEditor: function showEditor(id) {
       var selectedNote = this.notes.find(function (note) {
@@ -6563,7 +6537,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.app {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    grid-template-areas: \"header header\" \"sidebar content\";\n    grid-gap: 3px;\n}\n.content {\n    grid-area: content;\n}\n.add-container {\n    text-align: center;\n    margin: 8px 0;\n}\n.add-note {\n    background-color: white;\n    cursor: pointer;\n    border: 1px solid lightgray;\n    padding: 10px 14px;\n    border-radius: 20px;\n    font-size: 1.13em;\n    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);\n}\n.add-note:hover {\n    background-color: rgba(0.5, 0.5, 0.5, 0.075);\n}\n", ""]);
+exports.push([module.i, "\n.app {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    grid-template-areas: \"header header\" \"sidebar content\";\n    grid-gap: 3px;\n}\n.content {\n    grid-area: content;\n}\n.add-container {\n    text-align: center;\n    margin: 8px 0;\n}\n.add-note {\n    background-color: white;\n    cursor: pointer;\n    border: 1px solid lightgray;\n    padding: 10px 14px;\n    border-radius: 20px;\n    font-size: 1.13em;\n    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);\n    transition: all .5ms ease-in-out;\n}\n.add-note:hover {\n    background-color: rgba(0.5, 0.5, 0.5, 0.075);\n}\n", ""]);
 
 // exports
 
@@ -53160,16 +53134,22 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************!*\
   !*** ./resources/js/store.js ***!
   \*******************************/
-/*! exports provided: MUT_LOAD_NOTES, MUT_SELECT_NOTE, ACTION_LOAD_NOTES, ACTION_SELECT_NOTE, ACTION_DESELECT_NOTE, store */
+/*! exports provided: MUT_LOAD_NOTES, MUT_SELECT_NOTE, MUT_ADD_NOTE, MUT_UPDATE_NOTE, MUT_DELETE_NOTE, ACTION_LOAD_NOTES, ACTION_SELECT_NOTE, ACTION_DESELECT_NOTE, ACTION_ADD_NOTE, ACTION_UPDATE_NOTE, ACTION_DELETE_NOTE, store */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MUT_LOAD_NOTES", function() { return MUT_LOAD_NOTES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MUT_SELECT_NOTE", function() { return MUT_SELECT_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MUT_ADD_NOTE", function() { return MUT_ADD_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MUT_UPDATE_NOTE", function() { return MUT_UPDATE_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MUT_DELETE_NOTE", function() { return MUT_DELETE_NOTE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTION_LOAD_NOTES", function() { return ACTION_LOAD_NOTES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTION_SELECT_NOTE", function() { return ACTION_SELECT_NOTE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTION_DESELECT_NOTE", function() { return ACTION_DESELECT_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTION_ADD_NOTE", function() { return ACTION_ADD_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTION_UPDATE_NOTE", function() { return ACTION_UPDATE_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTION_DELETE_NOTE", function() { return ACTION_DELETE_NOTE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -53194,13 +53174,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]); // Mutation types
 
 var MUT_LOAD_NOTES = 'LOAD_NOTES';
-var MUT_SELECT_NOTE = 'SELECT_NOTE'; // Action types
+var MUT_SELECT_NOTE = 'SELECT_NOTE';
+var MUT_ADD_NOTE = 'ADD_NOTE';
+var MUT_UPDATE_NOTE = 'UPDATE_NOTE';
+var MUT_DELETE_NOTE = 'DELETE_NOTE'; // Action types
 
 var ACTION_LOAD_NOTES = 'LOAD_NOTES';
 var ACTION_SELECT_NOTE = 'SELECT_NOTE';
-var ACTION_DESELECT_NOTE = 'DESELECT_NOTE'; // Vuex store
+var ACTION_DESELECT_NOTE = 'DESELECT_NOTE';
+var ACTION_ADD_NOTE = 'ADD_NOTE';
+var ACTION_UPDATE_NOTE = 'UPDATE_NOTE';
+var ACTION_DELETE_NOTE = 'DELETE_NOTE'; // Vuex store
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
+  strict: true,
   state: {
     notes: [],
     selectedNote: null
@@ -53209,6 +53196,29 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     state.notes = notes;
   }), _defineProperty(_mutations, MUT_SELECT_NOTE, function (state, note) {
     state.selectedNote = note;
+  }), _defineProperty(_mutations, MUT_ADD_NOTE, function (state, note) {
+    state.notes.push(note);
+  }), _defineProperty(_mutations, MUT_UPDATE_NOTE, function (state, note) {
+    var n = state.notes.find(function (x) {
+      return x.id == note.id;
+    });
+
+    if (!n) {
+      throw new RangeError("Note with ID: ".concat(note.id, ", was not found in the array."));
+    }
+
+    n.title = note.title;
+    n.body = note.body;
+  }), _defineProperty(_mutations, MUT_DELETE_NOTE, function (state, id) {
+    var n = state.notes.findIndex(function (x) {
+      return x.id == id;
+    });
+
+    if (!n) {
+      throw new RangeError("Note with ID: ".concat(id, ", was not found in the array."));
+    }
+
+    state.notes.splice(n, 1);
   }), _mutations),
   actions: (_actions = {}, _defineProperty(_actions, ACTION_LOAD_NOTES, function () {
     var _ref2 = _asyncToGenerator(
@@ -53246,7 +53256,97 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   }), _defineProperty(_actions, ACTION_DESELECT_NOTE, function (_ref4) {
     var commit = _ref4.commit;
     commit(MUT_SELECT_NOTE, null);
-  }), _actions)
+  }), _defineProperty(_actions, ACTION_ADD_NOTE, function () {
+    var _ref6 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref5, note) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref5.commit;
+              _context2.t0 = commit;
+              _context2.t1 = MUT_ADD_NOTE;
+              _context2.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/notes', note);
+
+            case 5:
+              _context2.t2 = _context2.sent.data;
+              (0, _context2.t0)(_context2.t1, _context2.t2);
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2, _x3) {
+      return _ref6.apply(this, arguments);
+    };
+  }()), _defineProperty(_actions, ACTION_UPDATE_NOTE, function () {
+    var _ref8 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref7, note) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref7.commit;
+              _context3.t0 = commit;
+              _context3.t1 = MUT_UPDATE_NOTE;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/api/notes/".concat(note.id), note);
+
+            case 5:
+              _context3.t2 = _context3.sent.data;
+              (0, _context3.t0)(_context3.t1, _context3.t2);
+
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function (_x4, _x5) {
+      return _ref8.apply(this, arguments);
+    };
+  }()), _defineProperty(_actions, ACTION_DELETE_NOTE, function () {
+    var _ref10 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref9, id) {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref9.commit;
+              _context4.t0 = commit;
+              _context4.t1 = MUT_DELETE_NOTE;
+              _context4.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/notes/".concat(id));
+
+            case 5:
+              _context4.t2 = _context4.sent;
+              (0, _context4.t0)(_context4.t1, _context4.t2);
+
+            case 7:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function (_x6, _x7) {
+      return _ref10.apply(this, arguments);
+    };
+  }()), _actions)
 });
 
 /***/ }),

@@ -14,7 +14,14 @@
 </template>
 
 <script>
-    import {ACTION_LOAD_NOTES, ACTION_SELECT_NOTE, ACTION_DESELECT_NOTE} from "../store";
+    import {
+        ACTION_LOAD_NOTES,
+        ACTION_SELECT_NOTE,
+        ACTION_DESELECT_NOTE,
+        ACTION_ADD_NOTE,
+        ACTION_UPDATE_NOTE,
+        ACTION_DELETE_NOTE
+    } from "../store";
     import {mapState} from "vuex";
 
     import HeaderComponent from './HeaderComponent.vue';
@@ -34,37 +41,24 @@
         },
         computed: mapState(['notes', 'selectedNote']),
         methods: {
-            addNote() {
+            async addNote() {
                 const note = {id: null, title: '', body: ''};
-                this.$store.dispatch(ACTION_SELECT_NOTE, note);
+                await this.$store.dispatch(ACTION_SELECT_NOTE, note);
             },
-            deleteNote(id) {
-                window.axios.delete(`/api/notes/${id}`).then(() => {
-                    let index = this.notes.findIndex(n => n.id == id);
-                    this.notes.splice(index, 1);
-                });
+            async deleteNote(id) {
+                await this.$store.dispatch(ACTION_DELETE_NOTE, id);
             },
-            saveNote(note) {
-                if (!note.id) {
-                    window.axios.post('/api/notes', note).then(({data}) => {
-                        this.notes.push(data);
-                        this.selectedNote = null;
-                    });
-                } else {
-                    window.axios.put(`/api/notes/${note.id}`, note).then(() => {
-                        let n = this.notes.find(x => x.id == note.id);
-                        n.title = note.title;
-                        n.body = note.body;
-                        this.selectedNote = null;
-                    });
-                }
+            async saveNote(note) {
+                const action = note.id ? ACTION_UPDATE_NOTE : ACTION_ADD_NOTE;
+                await this.$store.dispatch(action, note);
+                await this.$store.dispatch(ACTION_DESELECT_NOTE);
             },
-            showEditor(id) {
-                const selectedNote = this.notes.find(note => note.id == id);
-                this.$store.dispatch(ACTION_SELECT_NOTE, selectedNote);
+            async showEditor(id) {
+                const selectedNote = this.notes.find(note => note.id === id);
+                await this.$store.dispatch(ACTION_SELECT_NOTE, selectedNote);
             },
-            closeEditor() {
-                this.$store.dispatch(ACTION_DESELECT_NOTE);
+            async closeEditor() {
+                await this.$store.dispatch(ACTION_DESELECT_NOTE);
             }
         }
     }
@@ -95,6 +89,7 @@
         border-radius: 20px;
         font-size: 1.13em;
         box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
+        transition: all .5ms ease-in-out;
     }
 
     .add-note:hover {
